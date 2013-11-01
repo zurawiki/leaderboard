@@ -14,15 +14,17 @@ if (Meteor.isClient) {
   };
 
   Template.player.selected = function () {
-    return Session.equals("selected_player", this._id) ? "selected" : '';
+    return Session.equals("selected_player", this._id) ? "warning" : '';
   };
 
+  /* When you press the button, add 5 points to the player */
   Template.leaderboard.events({
-    'click input.inc': function () {
+    'click #increment': function () {
       Players.update(Session.get("selected_player"), {$inc: {score: 5}});
     }
   });
 
+  /* When you click a player, select it */
   Template.player.events({
     'click': function () {
       Session.set("selected_player", this._id);
