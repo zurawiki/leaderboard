@@ -3,6 +3,7 @@ leaderboard
 
 A tutorial for getting started with Meteor.js
 
+See the final demo at: <http://one-radical-leaderboard.meteor.com>
 
 # How to get setup:
 
