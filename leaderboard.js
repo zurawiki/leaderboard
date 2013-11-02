@@ -62,6 +62,23 @@ if (Meteor.isClient) {
       
       Session.set("sort", sort);  
     },
+    'click #shuffle': function () {
+      // get all players
+      var players = Players.find({}).fetch();
+      
+      // clear all players
+      for (var i = 0; i < players.length; i++) 
+      {
+        Players.remove(players[i]._id);
+      }
+
+      // Re-insert players with new scores
+      for (var i = 0; i < players.length; i++) 
+      {
+        var player = {name: players[i].name, score: Math.floor(Random.fraction()*10)*5};
+        Players.insert(player);
+      }
+    },
   });
 
   /* When you click a player, select it */
@@ -76,7 +93,8 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     if (Players.find().count() === 0) {
-      var names = ["Ada Lovelace",
+      var names = ["Roger Zurawicki",
+                   "Ada Lovelace",
                    "Grace Hopper",
                    "Marie Curie",
                    "Carl Friedrich Gauss",

@@ -5,38 +5,34 @@
 <body>
 <main class="container">
   <h1>Leaderboard <small>brought to you by Meteor</small></h1>
-  {{> leaderboard}}
+  <div class="row">
+    {{> leaderboard}}
+  </div>
 </main>
 
 <br>
 <hr>
-<footer>
+<footer class="container">
   <p>Made by Roger Zurawicki<p>
-  <footer>
+<footer>
 </body>
 
 <template name="leaderboard">
-<p>{{sort}}</p>
-<a id="name" class="btn">Sort by Name</a>
-<a id="score" class="btn">Sort by Score</a>
-<table id="leaderboard" class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Score</th>
-    <tr>
-  </thead>
-    {{#each players}}
-      {{> player}}
-    {{/each}}
-</table>
-<hr>
-  <div id="details">
+  <div class="span4">
+    <p>{{sort}}</p>
+    <a id="name" class="btn">Sort by Name</a>
+    <a id="score" class="btn">Sort by Score</a>
+    <a id="shuffle" class="btn btn-warning">Randomize Scores</a>
+
+    <hr>
+
     <!-- The form allows us to insert with the text field and enter -->
-    <form class="form-inline">
+    <form class="form-horizontal">
       <input type="text" name="name" placeholder="Name">
       <button id="insert" class="btn btn-success">Insert</button>
     </form>
+    <hr>
+    <br>
 
     {{#if selected_name}}
       <h4>{{selected_name}}</h4>
@@ -46,6 +42,21 @@
       <p class="lead">Click a player to select</p>
     {{/if}}
   </div>
+  <div class="span8">
+
+    <table id="leaderboard" class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+        <tr>
+      </thead>
+        {{#each players}}
+          {{> player}}
+        {{/each}}
+    </table>
+  </div>
+
 </template>
 
 <template name="player">
