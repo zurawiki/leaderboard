@@ -19,7 +19,7 @@ See the final demo at: <http://one-radical-leaderboard.meteor.com>
 
     ```
     cd
-    git clone git@github.com:rzurawicki/leaderboard.git
+    git clone https://github.com/rzurawicki/leaderboard.git
     ```
     
     You now have a folder called leaderboard in your home directory
