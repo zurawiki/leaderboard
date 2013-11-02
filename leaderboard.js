@@ -21,6 +21,15 @@ if (Meteor.isClient) {
   Template.leaderboard.events({
     'click #increment': function () {
       Players.update(Session.get("selected_player"), {$inc: {score: 5}});
+    },
+    'click #delete': function () {
+      Players.remove(Session.get("selected_player"));
+    },
+    'click #insert': function () {
+      var n = $("input[name=name]").val();
+      Players.insert({name: n, score: 0});
+      $("input[name=name]").val('');
+      return false;
     }
   });
 

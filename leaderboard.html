@@ -26,16 +26,21 @@
     {{/each}}
 </table>
 <hr>
-  {{#if selected_name}}
-  <div id="details" class="span4">
-    <h4>{{selected_name}}</h4>
-    <a id="increment" class="btn">Give 5 points</a>
-  </div>
-  {{/if}}
+  <div id="details">
+    <!-- The form allows us to insert with the text field and enter -->
+    <form class="form-inline">
+      <input type="text" name="name" placeholder="Name">
+      <button id="insert" class="btn btn-success">Insert</button>
+    </form>
 
-  {{#unless selected_name}}
-  <p class="lead">Click a player to select</p>
-  {{/unless}}
+    {{#if selected_name}}
+      <h4>{{selected_name}}</h4>
+      <a id="increment" class="btn btn-primary">Give 5 points</a>
+      <a id="delete" class="btn btn-danger">Delete</a>
+    {{else}}
+      <p class="lead">Click a player to select</p>
+    {{/if}}
+  </div>
 </template>
 
 <template name="player">
