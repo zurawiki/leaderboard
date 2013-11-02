@@ -11,6 +11,7 @@ See the final demo at: <http://one-radical-leaderboard.meteor.com>
 
     ```
     curl https://install.meteor.com | sh
+    sudo chmod a+rx /usr/local/bin/meteor
     ```
 
 
