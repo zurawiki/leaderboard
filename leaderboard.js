@@ -4,9 +4,8 @@
 Players = new Meteor.Collection("players");
 
 if (Meteor.isClient) {
-  if ( _.isUndefined(Session.get("sort")) ) {
-    Session.set("sort", {score: -1, name: 1}); 
-  }
+  Session.setDefault("sort", {score: -1, name: 1}); 
+
   Template.leaderboard.players = function () {
     return Players.find({}, {sort: Session.get("sort")});
   };
