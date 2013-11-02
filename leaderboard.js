@@ -43,8 +43,11 @@ if (Meteor.isClient) {
     },
     'click #insert': function () {
       var n = $("input[name=name]").val();
-      Players.insert({name: n, score: 0});
-      $("input[name=name]").val('');
+      if (n != "") {
+        Players.insert({name: n, score: 0});
+        $("input[name=name]").val('');
+      }
+      // return false so the page will not reload
       return false;
     }, 
     'click #name': function () {
