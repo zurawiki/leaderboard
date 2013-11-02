@@ -4,10 +4,26 @@
 Players = new Meteor.Collection("players");
 
 if (Meteor.isClient) {
+  if ( _.isUndefined(Session.get("sort")) ) {
+    Session.set("sort", {score: -1, name: 1}); 
+  }
   Template.leaderboard.players = function () {
-    return Players.find({}, {sort: {score: -1, name: 1}});
+    return Players.find({}, {sort: Session.get("sort")});
   };
-
+  /* Descirbes in English how the list is sorted */
+  Template.leaderboard.sort = function () { 
+    var sort = Session.get("sort");
+    var output = "Sorting by ";
+    _.each(sort, function(v,k,l) {
+      var order  = "";
+      if (v === 1) 
+        order = "ascending";
+      if (v === -1) 
+        order = "descending";
+      output += k+" "+order+", ";
+    });
+    return output;
+  };
   Template.leaderboard.selected_name = function () {
     var player = Players.findOne(Session.get("selected_player"));
     return player && player.name;
@@ -30,7 +46,22 @@ if (Meteor.isClient) {
       Players.insert({name: n, score: 0});
       $("input[name=name]").val('');
       return false;
-    }
+    }, 
+    'click #name': function () {
+      var sort = Session.get("sort");
+      sort = {"name" : sort.name * -1, score: sort.score }
+      
+      Session.set("sort", sort);  
+    },
+    'click #score': function () {
+      var sort = Session.get("sort");
+      if (_.has(sort,"score"))
+        sort = {score: sort.score * -1, name: sort.name }
+      else
+        sort = {score: -1, name: sort.name}
+      
+      Session.set("sort", sort);  
+    },
   });
 
   /* When you click a player, select it */

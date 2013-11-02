@@ -16,10 +16,15 @@
 </body>
 
 <template name="leaderboard">
+<p>{{sort}}</p>
+<a id="name" class="btn">Sort by Name</a>
+<a id="score" class="btn">Sort by Score</a>
 <table id="leaderboard" class="table table-hover">
   <thead>
-    <th>Name</th>
-    <th>Score</th>
+    <tr>
+      <th>Name</th>
+      <th>Score</th>
+    <tr>
   </thead>
     {{#each players}}
       {{> player}}
