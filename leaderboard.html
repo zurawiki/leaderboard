@@ -55,8 +55,12 @@
           {{> player}}
         {{/each}}
     </table>
+
   </div>
 
+  {{#unless selected_name}}
+  <p class="lead">Click a player to select</p>
+  {{/unless}}
 </template>
 
 <template name="player">
